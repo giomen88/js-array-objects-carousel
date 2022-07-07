@@ -60,3 +60,81 @@ const images = [
             'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.',
     },
 ];
+
+// RECUPERO GALLERIA E THUMBNAILS DAL DOM
+const gallery = document.querySelector('.gallery');
+const thumbnails = document.querySelector('.thumbnails')
+
+// VARIABILE + CICLO FOR + MANIPOLAZIONE PER INSERIRE IMMAGINI NEL DOM
+let galleryImages = '';
+let thumbnailsImages = '';
+
+images.forEach((image, i) => {
+    const { url, title, description } = image
+
+    galleryImages += `
+    <figure>
+        <img src="${url}" alt="gallery-image${image[i]}">
+        <div class="text">
+            <h3 class="title">${title}</h3>
+            <p class="description">${description}</p>
+        </div>
+    </figure>`;
+
+    thumbnailsImages += `<img src="${url}" alt="thumbnails-image${image[i]}">`;
+});
+
+gallery.innerHTML = galleryImages;
+thumbnails.innerHTML = thumbnailsImages;
+
+// RECUPERO BOTTONI DAL DOM
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+
+// RECUPERO IL TAG IMG NEL DOM
+const galleryElements = document.querySelectorAll('.gallery figure');
+const thumbnailsElements = document.querySelectorAll('.thumbnails img');
+
+// VARIABILE PER IMMAGINE ATTIVA
+let currentActiveIndex = 0;
+
+// AGGIUNGO CLASSE ACTIVE ALLA PRIMA IMMAGINE
+galleryElements[currentActiveIndex].classList.add('active');
+thumbnailsElements[currentActiveIndex].classList.add('active');
+
+/////////////////////////// CLICK BOTTONE NEXT
+
+// AGGIUNGO FUNZIONE AL BUTTON NEXT
+
+nextButton.addEventListener('click', () => {
+
+    galleryElements[currentActiveIndex].classList.remove('active');
+    thumbnailsElements[currentActiveIndex].classList.remove('active');
+
+    currentActiveIndex++;
+
+    if (currentActiveIndex === galleryElements.length && thumbnailsElements.length) {
+        currentActiveIndex = 0;
+    }
+
+    galleryElements[currentActiveIndex].classList.add('active');
+    thumbnailsElements[currentActiveIndex].classList.add('active');
+})
+
+/////////////////////////// CLICK BOTTONE PREV
+
+// AGGIUNGO FUNZIONE AL BUTTON PREV
+prevButton.addEventListener('click', () => {
+
+    galleryElements[currentActiveIndex].classList.remove('active');
+    thumbnailsElements[currentActiveIndex].classList.remove('active');
+
+    currentActiveIndex--;
+
+    if (currentActiveIndex < 0) {
+        currentActiveIndex = galleryElements.length - 1 && thumbnailsElements.length - 1;
+    }
+
+    galleryElements[currentActiveIndex].classList.add('active');
+    thumbnailsElements[currentActiveIndex].classList.add('active');
+})

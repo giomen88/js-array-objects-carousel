@@ -6,10 +6,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- BOOTSTRAP -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+        crossorigin="anonymous">
+
+    <!-- ICONE -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 
 <body>
+    <div class="container">
+        <div class="row py-2" id="carousel">
+
+            <div class="col-12 g-3 text-center">
+                <h1>POINT OF VIEWS</h1>
+            </div>
+
+            <div class="col-2 buttons text-end g-3">
+                <!-- PREV-BUTTON -->
+                <div class="prev">
+                    <i class="bi bi-arrow-left-square-fill"></i>
+                </div>
+            </div>
+            <div class="col-8 g-3">
+                <!-- GALLERY -->
+                <div class="gallery">
+                </div>
+            </div>
+            <div class="col-2 buttons g-3">
+                <!-- NEXT-BUTTON -->
+                <div class="next">
+                    <i class="bi bi-arrow-right-square-fill"></i>
+                </div>
+            </div>
+
+            <div class="col-8 thumbnails offset-2 g-3 d-flex justify-content-between"></div>
+
+        </div>
+    </div>
     <script src="js/script.js"></script>
 </body>
 
