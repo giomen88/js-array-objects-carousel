@@ -74,14 +74,14 @@ images.forEach((image, i) => {
 
     galleryImages += `
     <figure>
-        <img src="${url}" alt="gallery-image${image[i]}">
+        <img src="${url}" alt="gallery-image${i}">
         <div class="text">
             <h3 class="title">${title}</h3>
             <p class="description">${description}</p>
         </div>
     </figure>`;
 
-    thumbnailsImages += `<img src="${url}" alt="thumbnails-image${image[i]}">`;
+    thumbnailsImages += `<img src="${url}" alt="thumbnails-image${i}">`;
 });
 
 gallery.innerHTML = galleryImages;
@@ -102,12 +102,9 @@ let currentActiveIndex = 0;
 galleryElements[currentActiveIndex].classList.add('active');
 thumbnailsElements[currentActiveIndex].classList.add('active');
 
-/////////////////////////// CLICK BOTTONE NEXT
+// FUNZIONI
 
-// AGGIUNGO FUNZIONE AL BUTTON NEXT
-
-nextButton.addEventListener('click', () => {
-
+showNextImage = () => {
     galleryElements[currentActiveIndex].classList.remove('active');
     thumbnailsElements[currentActiveIndex].classList.remove('active');
 
@@ -119,13 +116,10 @@ nextButton.addEventListener('click', () => {
 
     galleryElements[currentActiveIndex].classList.add('active');
     thumbnailsElements[currentActiveIndex].classList.add('active');
-})
 
-/////////////////////////// CLICK BOTTONE PREV
+}
 
-// AGGIUNGO FUNZIONE AL BUTTON PREV
-prevButton.addEventListener('click', () => {
-
+showPrevImage = () => {
     galleryElements[currentActiveIndex].classList.remove('active');
     thumbnailsElements[currentActiveIndex].classList.remove('active');
 
@@ -137,4 +131,16 @@ prevButton.addEventListener('click', () => {
 
     galleryElements[currentActiveIndex].classList.add('active');
     thumbnailsElements[currentActiveIndex].classList.add('active');
-})
+}
+
+
+// AGGIUNGO FUNZIONE AL BUTTON NEXT
+nextButton.addEventListener('click', showNextImage);
+
+
+// AGGIUNGO FUNZIONE AL BUTTON PREV
+prevButton.addEventListener('click', showPrevImage);
+
+// AGGIUNGO INTERVALLO 
+setInterval(showNextImage, 3000);
+
