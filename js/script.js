@@ -69,19 +69,21 @@ const thumbnails = document.querySelector('.thumbnails')
 let galleryImages = '';
 let thumbnailsImages = '';
 
-images.forEach((image, i) => {
+images.forEach(image => {
     const { url, title, description } = image
+
+    const img = `<img src="${url}" alt="gallery-image-${title}"></img>`
 
     galleryImages += `
     <figure>
-        <img src="${url}" alt="gallery-image${i}">
-        <div class="text">
+        ${img}
+        <figcaption>
             <h3 class="title">${title}</h3>
             <p class="description">${description}</p>
-        </div>
+        </figcaption>
     </figure>`;
 
-    thumbnailsImages += `<img src="${url}" alt="thumbnails-image${i}">`;
+    thumbnailsImages += img;
 });
 
 gallery.innerHTML = galleryImages;
@@ -116,7 +118,6 @@ showNextImage = () => {
 
     galleryElements[currentActiveIndex].classList.add('active');
     thumbnailsElements[currentActiveIndex].classList.add('active');
-
 }
 
 showPrevImage = () => {
@@ -142,5 +143,5 @@ nextButton.addEventListener('click', showNextImage);
 prevButton.addEventListener('click', showPrevImage);
 
 // AGGIUNGO INTERVALLO 
-setInterval(showNextImage, 3000);
+const autoplay = setInterval(showNextImage, 3000);
 
